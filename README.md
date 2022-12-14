@@ -1,20 +1,34 @@
-# Porting Kali NetHunter on Samsung Galaxy S4 (jflte) LineageOS 16
+# Porting Kali NetHunter on Samsung Galaxy S4 (jflte, GT-I9505) Lineage OS 18.1
 
-First of all we need to know what is Kali NetHunter. Kali Nethunter is not a ROM but is meant to be installed over an existing stock/factory image of Android. It is heavily based on using custom kernels so the first thing to do is compile a custom kernel.
+This is an updated guide on installing the pentesting platform Kali Nethunter (Full version) on Samsung Galaxy S4 (model GT-I9505), with Lineage OS 18.1 as the operating system. The device will be rooted and the bootloader will be unlocked in the process.
+
+As always, a full backup of your device is recommended before proceeding any further. Kali Nethunter is not a custom ROM in itself so we need Lineage OS underneath as a foundation. A custom kernel for Lineage OS will be created to allow for extra pentesting functionality, e.g. wireless USB, Bluetooth and HID keyboard, more on this below. 
+
+Prerequisites:
+- Your Samsung Galaxy S4 device should be in developer mode. This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
+
+Resources:
+Latest LineageOS build for Samsung Galaxy S4: https://download.lineageos.org/jfltexx
+
+Building NetHunter: https://www.kali.org/docs/nethunter/building-nethunter/
+
+Porting NetHunter to new device: https://www.kali.org/docs/nethunter/porting-nethunter/ 
+
+Disclaimer:
+I am not very knowledgeable in this field, but I want to save other people's time and potential frustration if they need this done. Therefore I am undertaking this task which leaves room for errors and misunderstandings on my part. More knowledgeable users may very well improve this guide if they find incorrect information.
 
 ## Environment consideration
 
-Everything can be made directly on the smartphone (via terminal or adb) but it is more complicated and extremely slow.
-All the following work is done with Ubuntu 18.04 LTS (the latest Ubuntu LTS at this moment) running on VirtualBox 6. The machine has:
- * 24Gb of RAM
- * 6 vCPU
- * 300Gb of solid state disk (but can be less)
- * a network connection
+It is recommended to follow along in a Linux terminal, a good way is to run Linux (e. g. Kali Linux, Ubuntu, Linux Mint) on a virtual machine.
+
+Fabiocogno used Ubuntu 18.04 LTS (the latest Ubuntu LTS at that moment) running on VirtualBox 6. 
 
 ## Build the custom kernel
 
+The custom kernel is the first step in the installation process. It is necessary if you want the Bluetooth arsenal (https://www.kali.org/docs/nethunter/nethunter-btarsenal/), Wireless attacks like packet injection (with compatible USB network dongle, read more: https://www.kali.org/docs/nethunter/wireless-cards/), and HID attack functionality (https://www.kali.org/docs/nethunter/nethunter-hid-attacks/), for example.
+
 ### Finding kernel sources
-In order to port Kali NetHunter on LineageOS (hereinafter also referred to as "LOS" or "LOS 16") we need the LOS kernel for the jflte. Fortunately, LOS is open source and the source code is hosted on GitHub. So we can clone the **android_kernel_samsung_jf** kernel repo that is the one used for the Samsung Galaxy S4 (GT-I9505 or jflte o jfltexx). 
+The Lineage OS (LOS) kernel for the jflte will be the foundation. Fortunately, LOS is open source and the source code is hosted on GitHub. So we can clone the **android_kernel_samsung_jf** kernel repo that is the one used for the Samsung Galaxy S4 (GT-I9505 or jflte o jfltexx). 
 ```bash
 git clone -b lineage-16.0 https://github.com/LineageOS/android_kernel_samsung_jf.git
 ```
@@ -38,8 +52,8 @@ export CROSS_COMPILE=$(pwd)/toolchain/bin/arm-eabi-
 You can view this variables with `export -p`.
 
 
-### patch the kernel source
-This is the reason! Kali NetHunter rely on a custom kernel that enable the packet injection and hid functionalities.
+### Patch the kernel source
+
 
 #### Injection patch
 This patch enable the mac80211 injection. It works on the LOS16 kernel and is based on the aircrack patch (http://patches.aircrack-ng.org/mac80211.compat08082009.wl_frag+ack_v1.patch).
