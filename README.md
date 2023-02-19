@@ -2,10 +2,17 @@
 
 This is an updated guide on installing the pentesting platform Kali Nethunter (Full version) on Samsung Galaxy S4 (model GT-I9505), with Lineage OS 18.1.
 
-    NOTE: As always, a full backup of your device is recommended before proceeding any further. Kali Nethunter is not a custom ROM in itself so we need Lineage OS    underneath as a foundation. A custom kernel for Lineage OS will be created to allow for extra pentesting functionality, e.g. wireless USB, Bluetooth and HID keyboard, more on this below. 
+NOTE: As always, a full backup of your device is recommended before proceeding any further. 
+
+Why not only Kali NetHunter?
+Kali Nethunter is not a custom ROM in itself so we are using Lineage OS custom ROM underneath as a foundation. A custom kernel for Lineage OS will be created to allow for extra pentesting functionality, e.g. wireless USB, Bluetooth and HID keyboard, more on this below. 
 
 Prerequisites:
-- Your Samsung Galaxy S4 device should be in developer mode. This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
+- Your Samsung Galaxy S4 device should be in developer mode.*
+- A full backup has been made of the device.
+- You have a Linux environment where you can compile the kernel.
+- 
+* This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
 
 Resources:
 Latest LineageOS build for Samsung Galaxy S4: https://download.lineageos.org/jfltexx
@@ -19,7 +26,7 @@ I am not very knowledgeable in this field, but I want to save other people's tim
 
 ## Environment consideration
 
-It is recommended to follow along in a Linux terminal, a good way is to run Linux (e. g. Kali Linux, Ubuntu, Linux Mint) on a virtual machine.
+This guide assumes you are operating in a Linux environment, either in a virtual machine or bare-metal install.
 
 Fabiocogno used Ubuntu 18.04 LTS (the latest Ubuntu LTS at that moment) running on VirtualBox 6. 
 
@@ -36,7 +43,7 @@ Where `-b lineage-16.0` assures us the correct version (the correct branch in gi
 > The Samsung Galaxy S4 (GT-I9505 jflte) kernel is fortunately based on the old linux kernel 3.4 that is supported by Kali NetHunter, read the *Kernel Version* section [here](https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-project/wikis/Porting-Nethunter).
 
 ### Choosing the compiler/toolchain
-The Samsung Galaxy S4 has an ARM architecure, a 32bit architecture NOT a 64bit (NOT ARM64). In order to compile the new kernel from the x86 architecture we need a cross-compiler, a toolchain. We choose the Google one. I've successfully compile the sources above with the armeabi 4.7 and 4.8.
+The Samsung Galaxy S4 has an ARM 32-bit architecure (NOT ARM64). In order to compile the new kernel from an x86 architecture we need a cross-compiler, a toolchain. We will choose the Google one. I've successfully compile the sources above with the armeabi 4.7 and 4.8.
 ```bash
 git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 toolchain
 ```
