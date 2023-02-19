@@ -26,7 +26,7 @@ I am not very knowledgeable in this field, but I want to save other people's tim
 
 ## Environment consideration
 
-This guide assumes you are operating in a Linux environment, either in a virtual machine or bare-metal install.
+This guide assumes you are operating in a Linux environment, we will be using Linux commands.
 
 Fabiocogno used Ubuntu 18.04 LTS (the latest Ubuntu LTS at that moment) running on VirtualBox 6. 
 
