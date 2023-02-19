@@ -22,7 +22,7 @@ Building NetHunter: https://www.kali.org/docs/nethunter/building-nethunter/
 Porting NetHunter to new device: https://www.kali.org/docs/nethunter/porting-nethunter/ 
 
 Disclaimer:
-I am not very knowledgeable in this field, but I want to save other people's time and potential frustration if they need this done. Therefore I am undertaking this task which leaves room for errors and misunderstandings on my part. More knowledgeable users may very well improve this guide if they find incorrect information.
+I am not very knowledgeable in this field, but I want to save other people's time and potential frustration if they need this done. Therefore I am undertaking this task which leaves room for errors and misunderstandings on my part. More knowledgeable users may very well improve this guide if they find any incorrect information.
 
 ## Environment consideration
 
