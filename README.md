@@ -10,7 +10,9 @@ Kali Nethunter is not a custom ROM in itself so we are using Lineage OS custom R
 Prerequisites:
 - Your Samsung Galaxy S4 device should be in developer mode.*
 - A full backup has been made of the device.
-- You have a Linux environment where you can compile the kernel.
+- You have a Linux environment where you can compile the kernel, with 25-50GB free space (to speed up the build process)
+- An internet connection (yes, that was necessary)
+- A folder that you can work in (e. g. jfltexx-los18)
 
 *This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
 
@@ -37,26 +39,28 @@ The custom kernel is the first step in the installation process. It is necessary
 ### Finding kernel sources
 The Lineage OS (LOS) kernel for the jflte will be the foundation. Fortunately, LOS is open source and the source code is hosted on GitHub. So we can clone the **android_kernel_samsung_jf** kernel repo that is the one used for the Samsung Galaxy S4 (GT-I9505 or jflte o jfltexx). 
 ```bash
-git clone -b lineage-16.0 https://github.com/LineageOS/android_kernel_samsung_jf.git
+git clone -b lineage-18.1 https://github.com/LineageOS/android_kernel_samsung_jf.git
 ```
-Where `-b lineage-16.0` assures us the correct version (the correct branch in git speaking) of LOS, the 16.
-> The Samsung Galaxy S4 (GT-I9505 jflte) kernel is fortunately based on the old linux kernel 3.4 that is supported by Kali NetHunter, read the *Kernel Version* section [here](https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-project/wikis/Porting-Nethunter).
+Where `-b lineage-18.1` assures us the correct version (the correct branch in git speaking) of LOS, version 18.1.
 
 ### Choosing the compiler/toolchain
-The Samsung Galaxy S4 has an ARM 32-bit architecure (NOT ARM64). In order to compile the new kernel from an x86 architecture we need a cross-compiler, a toolchain. We will choose the Google one. I've successfully compile the sources above with the armeabi 4.7 and 4.8.
+The Samsung Galaxy S4 has an ARM 32-bit architecure (not ARM64). In order to compile the new kernel from an x86 architecture we need the right tools for the job, a toolchain. We will choose Google's cross-compiler. It contains everything that we need for the compiling process.
+
+We want to clone the cross-compiler tools into a folder called "toolchain" in our working directory:
 ```bash
-git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 toolchain
+git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 toolchain
 ```
-This command save the compiler in the `toolchain` folder
 
 ### Set-up the environment
-As described above we need to cross-compile. To do this we need to set-up some variables:
+Now we will set up some variables for the compiler to use:
 ```bash
 export ARCH=arm
 export SUBARCH=arm
 export CROSS_COMPILE=$(pwd)/toolchain/bin/arm-eabi-
 ```
-You can view this variables with `export -p`.
+Awesome! Architecture is set to ARM, and we have pointed to where the cross-compiler is located.
+
+You can view this variables with `export -p`, to make sure they are correct.
 
 
 ### Patch the kernel source
