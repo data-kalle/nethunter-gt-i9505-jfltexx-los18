@@ -2,7 +2,7 @@
 
 This is an updated guide on installing the pentesting platform Kali Nethunter (Full version) on Samsung Galaxy S4 (model GT-I9505), with Lineage OS 18.1.
 
-As always, a full backup of your device is recommended before proceeding any further. Kali Nethunter is not a custom ROM in itself so we need Lineage OS underneath as a foundation. A custom kernel for Lineage OS will be created to allow for extra pentesting functionality, e.g. wireless USB, Bluetooth and HID keyboard, more on this below. 
+    NOTE: As always, a full backup of your device is recommended before proceeding any further. Kali Nethunter is not a custom ROM in itself so we need Lineage OS    underneath as a foundation. A custom kernel for Lineage OS will be created to allow for extra pentesting functionality, e.g. wireless USB, Bluetooth and HID keyboard, more on this below. 
 
 Prerequisites:
 - Your Samsung Galaxy S4 device should be in developer mode. This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
