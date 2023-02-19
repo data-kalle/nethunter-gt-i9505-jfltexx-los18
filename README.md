@@ -11,8 +11,8 @@ Prerequisites:
 - Your Samsung Galaxy S4 device should be in developer mode.*
 - A full backup has been made of the device.
 - You have a Linux environment where you can compile the kernel.
-- 
-* This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
+
+*This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
 
 Resources:
 Latest LineageOS build for Samsung Galaxy S4: https://download.lineageos.org/jfltexx
