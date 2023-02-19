@@ -1,6 +1,6 @@
 # Porting Kali NetHunter on Samsung Galaxy S4 (jflte, GT-I9505) Lineage OS 18.1
 
-This is an updated guide on installing the pentesting platform Kali Nethunter (Full version) on Samsung Galaxy S4 (model GT-I9505), with Lineage OS 18.1 as the operating system. The device will be rooted and the bootloader will be unlocked in the process.
+This is an updated guide on installing the pentesting platform Kali Nethunter (Full version) on Samsung Galaxy S4 (model GT-I9505), with Lineage OS 18.1.
 
 As always, a full backup of your device is recommended before proceeding any further. Kali Nethunter is not a custom ROM in itself so we need Lineage OS underneath as a foundation. A custom kernel for Lineage OS will be created to allow for extra pentesting functionality, e.g. wireless USB, Bluetooth and HID keyboard, more on this below. 
 
