@@ -5,13 +5,13 @@ This is an updated guide on installing the pentesting platform Kali Nethunter (F
 NOTE: As always, a full backup of your device is recommended before proceeding any further. 
 
 Why not only Kali NetHunter?
-Kali Nethunter is not a custom ROM in itself so we are using Lineage OS custom ROM underneath as a foundation. A custom kernel for Lineage OS will be created to allow for extra pentesting functionality, e.g. wireless USB, Bluetooth and HID keyboard, more on this below. 
+Kali Nethunter is not a custom ROM in itself so we are using Lineage OS custom ROM as a foundation. A custom kernel for Lineage OS will be created to allow for extra pentesting functionality.
 
 Prerequisites:
 - Your Samsung Galaxy S4 device should be in developer mode.*
 - A full backup has been made of the device.
 - You have a Linux environment where you can compile the kernel, with 25-50GB free space (to speed up the build process)
-- An internet connection (yes, that was necessary)
+- An internet connection
 - A folder that you can work in (e. g. jfltexx-los18)
 
 *This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
@@ -28,7 +28,7 @@ I am not very knowledgeable in this field, but I want to save other people's tim
 
 ## Environment consideration
 
-This guide assumes you are operating in a Linux environment, we will be using Linux commands.
+This guide assumes you are operating in a Linux environment, we will be using Linux (Debian) commands.
 
 Fabiocogno used Ubuntu 18.04 LTS (the latest Ubuntu LTS at that moment) running on VirtualBox 6. 
 
@@ -44,7 +44,7 @@ git clone -b lineage-18.1 https://github.com/LineageOS/android_kernel_samsung_jf
 Where `-b lineage-18.1` assures us the correct version (the correct branch in git speaking) of LOS, version 18.1.
 
 ### Choosing the compiler/toolchain
-The Samsung Galaxy S4 has an ARM 32-bit architecure (not ARM64). In order to compile the new kernel from an x86 architecture we need the right tools for the job, a toolchain. We will choose Google's cross-compiler. It contains everything that we need for the compiling process.
+The Samsung Galaxy S4 has an ARM 32-bit architecture (not ARM64). In order to compile the new kernel from an x86 architecture we need the right tools for the job, a toolchain. We will choose Google's cross-compiler. It contains everything that we need for the compiling process.
 
 We want to clone the cross-compiler tools into a folder called "toolchain" in our working directory:
 ```bash
