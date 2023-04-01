@@ -28,20 +28,22 @@ I am not very knowledgeable in this field, but I want to save other people's tim
 
 ## Environment consideration
 
-This guide assumes you are operating in a Linux environment, we will be using Linux (Debian) commands.
+This guide assumes you are operating in a Debian-based Linux environment.
 
-Fabiocogno used Ubuntu 18.04 LTS (the latest Ubuntu LTS at that moment) running on VirtualBox 6. 
+Open Terminal in your working folder, this is where we will store source code, patches etc.
 
 ## Build the custom kernel
 
 The custom kernel is the first step in the installation process. It is necessary if you want the Bluetooth arsenal (https://www.kali.org/docs/nethunter/nethunter-btarsenal/), Wireless attacks like packet injection (with compatible USB network dongle, read more: https://www.kali.org/docs/nethunter/wireless-cards/), and HID attack functionality (https://www.kali.org/docs/nethunter/nethunter-hid-attacks/), for example.
 
+
+
 ### Finding kernel sources
-The Lineage OS (LOS) kernel for the jflte will be the foundation. Fortunately, LOS is open source and the source code is hosted on GitHub. So we can clone the **android_kernel_samsung_jf** kernel repo that is the one used for the Samsung Galaxy S4 (GT-I9505 or jflte o jfltexx). 
+Let's find the Lineage OS 18.1 source code and clone the repository into our working folder: 
 ```bash
 git clone -b lineage-18.1 https://github.com/LineageOS/android_kernel_samsung_jf.git
 ```
-Where `-b lineage-18.1` assures us the correct version (the correct branch in git speaking) of LOS, version 18.1.
+This download can take a while.
 
 ### Choosing the compiler/toolchain
 The Samsung Galaxy S4 has an ARM 32-bit architecture (not ARM64). In order to compile the new kernel from an x86 architecture we need the right tools for the job, a toolchain. We will choose Google's cross-compiler. It contains everything that we need for the compiling process.
