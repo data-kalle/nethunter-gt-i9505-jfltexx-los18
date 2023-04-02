@@ -45,8 +45,16 @@ git clone -b lineage-18.1 https://github.com/LineageOS/android_kernel_samsung_jf
 ```
 This download can take a while.
 
+Troubleshooting: This error can happen during the cloning process:
+```error: 15234 bytes of body are still expected.10 MiB | 20.21 MiB/s
+fetch-pack: unexpected disconnect while reading sideband packet
+fatal: early EOF
+fatal: index-pack failed
+```
+I think this is due to my VPN connection using the UDP protocol. Turning off the VPN solved this problem, and perhaps switching to the TCP protocol in your VPN client can help solve this problem too.
+
 ### Choosing the compiler/toolchain
-The Samsung Galaxy S4 has an ARM 32-bit architecture (not ARM64). In order to compile the new kernel from an x86 architecture we need the right tools for the job, a toolchain. We will choose Google's cross-compiler. It contains everything that we need for the compiling process.
+The Samsung Galaxy S4 has an ARM 32-bit architecture (ARM32). In order to compile the new kernel from an x86 architecture we need the right tools for the job, a toolchain. We will choose Google's cross-compiler. An ARM64 toolchain will not work for this task.
 
 We want to clone the cross-compiler tools into a folder called "toolchain" in our working directory:
 ```bash
