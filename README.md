@@ -17,7 +17,7 @@ Prerequisites:
 *This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
 
 Resources:
-Latest LineageOS build for Samsung Galaxy S4: https://download.lineageos.org/jfltexx
+LineageOS guide for Samsung Galaxy S4 (GT-i9505): https://wiki.lineageos.org/devices/jfltexx/
 
 Building NetHunter: https://www.kali.org/docs/nethunter/building-nethunter/
 
