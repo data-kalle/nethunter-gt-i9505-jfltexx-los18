@@ -10,8 +10,10 @@ Kali Nethunter is not a custom ROM in itself so we are using Lineage OS custom R
 Prerequisites:
 - Your Samsung Galaxy S4 device should be in developer mode.*
 - A full backup has been made of the device.
-- You have a Linux environment where you can compile the kernel, with 25-50GB free space (to speed up the build process)
-- An internet connection
+- A relatively recent 64-bit computer running Linux, we will be running Debian-based commands.
+A reasonable amount of RAM (16 GB to build up to lineage-17.1, 32 GB or more for lineage-18.1 and up). The less RAM you have, the longer the build will take. Enabling ZRAM can be helpful.
+A reasonable amount of Storage (200 GB to build up to lineage-17.1, 300 GB for lineage-18.1 and up). You might require more free space for enabling ccache or building for multiple devices. Using SSDs results in considerably faster build times than traditional hard drives.
+A decent internet connection and reliable electricity. :)
 - A folder that you can work in (e. g. jfltexx-los18)
 
 *This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
