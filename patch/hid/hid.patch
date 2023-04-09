@@ -278,13 +278,6 @@ index b2113420b80..2d1a833c484 100644
  	kfree(hidg->req->buf);
  	usb_ep_free_request(hidg->in_ep, hidg->req);
  
-@@ -631,7 +726,7 @@ int __init hidg_bind_config(struct usb_configuration *c,
- 	return status;
- }
- 
--int __init ghid_setup(struct usb_gadget *g, int count)
-+int ghid_setup(struct usb_gadget *g, int count)
- {
  	int status;
  	dev_t dev;
 diff --git a/drivers/usb/gadget/f_hid.h b/drivers/usb/gadget/f_hid.h
