@@ -110,10 +110,10 @@ This patch enable the hid functionalities. It works on the LOS16 kernel and is b
 patch -p1 < patch/hid/hid.patch
 ```
 Possible errors:
-"Hunk #1 FAILED at 77", patch updated, should be fixed.
+
 "Hunk #9 FAILED at 531": replace "drivers/usb/gadget/f_hid.c" with the file version in the "patch" folder.
 NOTE: I don't understand how to properly edit patch files (beyond removing obsolete sections), so we will be replacing files instead.
-"Hunk #12 FAILED at 673", "Hunk #3 FAILED at 2198": unnecessary fixes, updated patch.
+
 ### Configure the kernel
 Before to start the build process, we need to configure the kernel for the device and enable some other functionalities. Basically we need to create the `.config` file used by `make` than we can follow the Kali NetHunter guide (https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-project/wikis/Modifying-the-Kernel).
 
