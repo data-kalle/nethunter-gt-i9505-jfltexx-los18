@@ -66,14 +66,6 @@ index 2ba6b8c24be..7060064a26c 100644
  static int android_uasp_connect_cb(bool connect)
  {
  	/*
-@@ -2160,6 +2198,7 @@ static struct android_usb_function *supported_functions[] = {
- 	&conn_gadget_function,
- #endif
- 	&audio_source_function,
-+	&hid_function,
- 	&uasp_function,
- 	NULL
- };
 @@ -2468,6 +2507,8 @@ functions_store(struct device *pdev, struct device_attribute *attr,
  								   name, err);
  		}
