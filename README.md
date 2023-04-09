@@ -93,6 +93,7 @@ Move the patches from this git repo into the android kernel folder, example:
 cd nethunter-gt-i9505-jfltexx-los18
 mv patch ../android_kernel_samsung_jf
 cd ../android_kernel_samsung_jf
+```
 
 Time for patches!
 
