@@ -86,7 +86,7 @@ export -p | grep -E -w -i "ARCH|SUBARCH|CROSS_COMPILE"
 Hopefully you will see the variables there!
 
 ### Patch the kernel source
-Cd into your working folder (i. e. the one with "toolchain", "android_kernel_samsung_jf", and "nethunter-gt-i9505-jfltexx-los18". 
+Change directory into your working folder (i. e. the one with "toolchain", "android_kernel_samsung_jf", and "nethunter-gt-i9505-jfltexx-los18"). 
 
 Move the patches from this git repo into the android kernel folder, example:
 ```bash
@@ -95,9 +95,9 @@ mv patch ../android_kernel_samsung_jf
 cd ../android_kernel_samsung_jf
 ```
 
-Time for patches!
+All good? Let's get on with it!
 
-Resource for patches and how they work: https://www.howtogeek.com/415442/how-to-apply-a-patch-to-a-file-and-create-patches-in-linux/
+Resource for patches and how they work (if something goes wrong): https://www.howtogeek.com/415442/how-to-apply-a-patch-to-a-file-and-create-patches-in-linux/
 
 #### Injection patch
 This patch enables the mac80211 injection. It works on the LOS16 kernel and is based on the aircrack patch (http://patches.aircrack-ng.org/mac80211.compat08082009.wl_frag+ack_v1.patch).
