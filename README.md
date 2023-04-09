@@ -60,38 +60,59 @@ The Samsung Galaxy S4 has an ARM 32-bit architecture (ARM32). In order to compil
 
 We want to clone the cross-compiler tools into a folder called "toolchain" in our working directory:
 ```bash
+# clone the repo, it will be empty
 git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 toolchain
+# go to the repo folder
+cd toolchain
+# use the hash of the commit to restore the commit which actually contains the toolchain
+git checkout e9b2ab0932573a0ca90cad11ab75d9619f19c458
 ```
-
+NOTE: For some reason the compiler has been removed from the repo, resulting in only an "OWNERS"-file in the cloned repo folder. This is why we are using git checkout and the version hash.
+Source: https://stackoverflow.com/questions/71281064/google-removed-cross-compilers-for-android-kernel-where-are-they-now
 ### Set-up the environment
 Now we will set up some variables for the compiler to use:
 ```bash
 export ARCH=arm
 export SUBARCH=arm
-export CROSS_COMPILE=$(pwd)/toolchain/bin/arm-eabi-
+export CROSS_COMPILE=$(pwd)/toolchain/bin/arm-linux-androideabi-
 ```
 Awesome! Architecture is set to ARM, and we have pointed to where the cross-compiler is located.
 
-You can view this variables with `export -p`, to make sure they are correct.
+You can view our variables by using export and piping it into grep:
+```bash
+export -p | grep -E -w -i "ARCH|SUBARCH|CROSS_COMPILE"```
 
+Hopefully you will see the variables there!
 
 ### Patch the kernel source
+Cd into your working folder (i. e. the one with "toolchain", "android_kernel_samsung_jf", and "nethunter-gt-i9505-jfltexx-los18". 
 
+Move the patches from this git repo into the android kernel folder, example:
+```bash
+cd nethunter-gt-i9505-jfltexx-los18
+mv patch ../android_kernel_samsung_jf
+cd ../android_kernel_samsung_jf
+
+Time for patches!
+
+Resource for patches and how they work: https://www.howtogeek.com/415442/how-to-apply-a-patch-to-a-file-and-create-patches-in-linux/
 
 #### Injection patch
-This patch enable the mac80211 injection. It works on the LOS16 kernel and is based on the aircrack patch (http://patches.aircrack-ng.org/mac80211.compat08082009.wl_frag+ack_v1.patch).
+This patch enables the mac80211 injection. It works on the LOS16 kernel and is based on the aircrack patch (http://patches.aircrack-ng.org/mac80211.compat08082009.wl_frag+ack_v1.patch).
 ```bash
-cd android_kernel_samsung_jf
-patch -p1 < ../patch/injection/mac80211.compat13102019.wl_frag+ack_v1.patch
+patch -p1 < patch/injection/mac80211.compat13102019.wl_frag+ack_v1.patch
 ```
 
 #### hid patch
 This patch enable the hid functionalities. It works on the LOS16 kernel and is based on the Android Keyboard Gadget (https://github.com/pelya/android-keyboard-gadget).
 ```bash
-cd android_kernel_samsung_jf
-patch -p1 < ../patch/hid/hid.patch
+patch -p1 < patch/hid/hid.patch
 ```
-
+Possible errors:
+"Hunk #1 FAILED at 77", patch updated, should be fixed.
+"Hunk #9 FAILED at 531": replace "drivers/usb/gadget/f_hid.c" with the file version in the "patch" folder.
+NOTE: I don't understand how to properly edit patch files (beyond removing obsolete sections), so we will be replacing files instead.
+"Hunk #12 FAILED at 673", "Hunk #3 FAILED at 2198": unnecessary fixes, updated patch.
 ### Configure the kernel
 Before to start the build process, we need to configure the kernel for the device and enable some other functionalities. Basically we need to create the `.config` file used by `make` than we can follow the Kali NetHunter guide (https://gitlab.com/kalilinux/nethunter/build-scripts/kali-nethunter-project/wikis/Modifying-the-Kernel).
 
