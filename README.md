@@ -137,7 +137,7 @@ When you have finished the work, save the config to `.config`.
 I've already done this work and you can put my configuration as a base for yours specific mod (or future mod) if needed.
 ```bash
 cd android_kernel_samsung_jf
-cp ../patch/defconfig/nethunter_jf_defconfig ./arch/arm/configs/
+cp patch/defconfig/nethunter_jf_defconfig ./arch/arm/configs/
 mkdir -p ../kernel # the output directory
 make O=../kernel clean # as a precaution
 make O=../kernel ARCH=arm VARIANT_DEFCONFIG=jf_eur_defconfig nethunter_jf_defconfig
@@ -153,7 +153,7 @@ Unfortunately the USB bluetooth module doens't compile because there are some de
 In order to make our kernel compile, we need to apply another patch I've write to fix this issue.
 ```bash
 cd android_kernel_samsung_jf
-patch -p1 < ../patch/bluetooth/bluetooth_compile_fix.patch
+patch -p1 < patch/bluetooth/bluetooth_compile_fix.patch
 ```
 This patch come from this stackoverflow thread: https://stackoverflow.com/questions/37535720/kernel-compiling-bluetooth-error
 
@@ -167,7 +167,7 @@ nano Makefile
 I've already done this work for you (I know, yet another patch):
 ```bash
 cd android_kernel_samsung_jf
-patch -p1 < ../patch/makefile/makefile_warning.patch
+patch -p1 < patch/makefile/makefile_warning.patch
 ```
 
 #### Kernel name
