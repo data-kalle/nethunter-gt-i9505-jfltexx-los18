@@ -14,7 +14,7 @@ Prerequisites:
 - A reasonable amount of RAM (16 GB to build up to lineage-17.1, 32 GB or more for lineage-18.1 and up). The less RAM you have, the longer the build will take. Enabling ZRAM can be helpful.
 - A reasonable amount of Storage (200 GB to build up to lineage-17.1, 300 GB for lineage-18.1 and up). You might require more free space for enabling ccache or building for multiple devices. Using SSDs results in considerably faster build times than traditional hard drives.
 - A decent internet connection and reliable electricity. :)
-- A folder that you can work in (this guide uses "nethunter-gt-i9505-jfltexx-los18")
+- A folder that you can work in (this guide uses "jfltexx-los18")
 
 *This is done by navigating to Settings -> About and tapping on the Build number field 7 times until you receive the notification that developer mode has been enabled. Go back to the main settings page and you will have a new section titled Developer options. Tap on the new Developer options section and enable both the Advanced Reboot and Android Debugging options.
 
