@@ -42,10 +42,83 @@ The custom kernel is the first step in the installation process. It is necessary
 
 
 ### Finding kernel sources
-Let's find the Lineage OS 18.1 source code and clone the repository into our working folder: 
-```bash
-git clone -b lineage-18.1 https://github.com/LineageOS/android_kernel_samsung_jf.git
-```
+Install the repo command
+Enter the following to download the repo binary and make it executable (runnable):
+
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+Put the ~/bin directory in your path of execution
+In recent versions of Ubuntu, ~/bin should already be in your PATH. You can check this by opening ~/.profile with a text editor and verifying the following code exists (add it if it is missing):
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+Then, run source ~/.profile to update your environment.
+
+Configure git
+Given that repo requires you to identify yourself to sync Android, run the following commands to configure your git identity:
+
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+Turn on caching to speed up build
+Make use of ccache if you want to speed up subsequent builds by running:
+
+export USE_CCACHE=1
+export CCACHE_EXEC=/usr/bin/ccache
+and adding that line to your ~/.bashrc file. Then, specify the maximum amount of disk space you want ccache to use by typing this:
+
+ccache -M 50G
+where 50G corresponds to 50GB of cache. This needs to be run once. Anywhere from 25GB-100GB will result in very noticeably increased build speeds (for instance, a typical 1hr build time can be reduced to 20min). If you’re only building for one device, 25GB-50GB is fine. If you plan to build for several devices that do not share the same kernel source, aim for 75GB-100GB. This space will be permanently occupied on your drive, so take this into consideration.
+
+You can also enable the optional ccache compression. While this may involve a slight performance slowdown, it increases the number of files that fit in the cache. To enable it, run:
+
+ccache -o compression=true
+info_outline
+NOTE: If compression is enabled, the ccache size can be lower (aim for approximately 20GB for one device).
+Initialize the LineageOS source repository
+The following branches are officially supported for the Samsung Galaxy S4 (GT-I9505, SGH-I337M, SGH-M919):
+
+cm-14.1
+
+lineage-16.0
+
+lineage-17.1
+
+lineage-18.1
+
+Enter the following to initialize the repository:
+
+info_outline
+NOTE: Make sure the branch you enter here is the one you wish to build!
+cd ~/android/lineage
+repo init -u https://github.com/LineageOS/android.git -b lineage-18.1 --git-lfs
+Download the source code
+To start the download of the source code to your computer, type the following:
+
+repo sync
+The LineageOS manifests include a sensible default configuration for repo, which we strongly suggest you use (i.e. don’t add any options to sync). For reference, our default values are -j 4 and -c. The -j 4 part implies be four simultaneous threads/connections. If you experience problems syncing, you can lower this to -j 3 or -j 2. On the other hand, -c makes repo to pull in only the current branch instead of all branches that are available on GitHub.
+
+info_outline
+NOTE: This may take a while, depending on your internet speed. Go and have a beer/coffee/tea/nap in the meantime!
+check
+TIP: The repo sync command is used to update the latest source code from LineageOS and Google. Remember it, as you may want to do it every few days to keep your code base fresh and up-to-date. But note, if you make any changes, running repo sync may wipe them away!
+Prepare the device-specific code
+After the source downloads, ensure you’re in the root of the source code (cd ~/android/lineage), then type:
+
+source build/envsetup.sh
+breakfast jfltexx
+This will download your device’s device specific configuration and kernel.
+
+warning
+IMPORTANT: Some devices require a vendor directory to be populated before breakfast will succeed. If you receive an error here about vendor makefiles, jump down to Extract proprietary blobs. The first portion of breakfast should have succeeded, and after completing you can rerun breakfast
+Extract proprietary blobs
+info_outline
+NOTE: This step requires to have a device already running the latest LineageOS, based on the branch you wish to build for. If you don’t have access to such device, refer to Extracting proprietary blobs from installable zip.
+Now ensure your Samsung Galaxy S4 (GT-I9505, SGH-I337M, SGH-M919) is connected to your computer via the USB cable, with ADB and root enabled, and that you are in the ~/android/lineage/device/samsung/jfltexx folder. Then run the extract-files.sh script:
+
+./extract-files.sh
+The blobs should be pulled into the ~/android/lineage/vendor/samsung folder. If you see “command not found” errors, adb may need to be placed in ~/bin.
 This download can take a while.
 
 Troubleshooting: This error can happen during the cloning process:
