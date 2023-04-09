@@ -191,6 +191,9 @@ make O=../kernel ARCH=arm -j$(nproc --all) LOCALVERSION="-NetHunter"
 ```
 Where `-j` define the numer of thread to use. the `$(nproc --all)` print the number of processing units available on the machine.
 
+If something goes wrong, install:
+bc bison build-essential ccache curl flex g++-multilib gcc-multilib git git-lfs gnupg gperf imagemagick lib32ncurses5-dev lib32readline-dev lib32z1-dev libelf-dev liblz4-tool libncurses5 libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc zip zlib1g-dev
+
 After few minute (depends on your CPU) the shell return and we can see:
 ```bash
   Kernel: arch/arm/boot/zImage is ready
