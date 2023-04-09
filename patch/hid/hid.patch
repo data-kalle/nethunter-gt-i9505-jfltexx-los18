@@ -15,16 +15,15 @@ diff --git a/drivers/usb/gadget/android.c b/drivers/usb/gadget/android.c
 index 2ba6b8c24be..7060064a26c 100644
 --- a/drivers/usb/gadget/android.c
 +++ b/drivers/usb/gadget/android.c
-@@ -77,6 +77,9 @@
+@@ -77,5 +77,8 @@
  #include "f_mtp.c"
- #endif
  #include "f_accessory.c"
 +#include "f_hid.h"
 +#include "f_hid_android_keyboard.c"
 +#include "f_hid_android_mouse.c"
- #ifdef CONFIG_USB_ANDROID_SAMSUNG_SIDESYNC
- #include "f_conn_gadget.c"
- #endif
+ #ifdef CONFIG_USB_ANDROID_CDC_ECM
+ #include "f_ecm.c"
+ #else
 @@ -2081,6 +2084,41 @@ static struct android_usb_function audio_source_function = {
  	.attributes	= audio_source_function_attributes,
  };
