@@ -80,7 +80,8 @@ Awesome! Architecture is set to ARM, and we have pointed to where the cross-comp
 
 You can view our variables by using export and piping it into grep:
 ```bash
-export -p | grep -E -w -i "ARCH|SUBARCH|CROSS_COMPILE"```
+export -p | grep -E -w -i "ARCH|SUBARCH|CROSS_COMPILE"
+```
 
 Hopefully you will see the variables there!
 
