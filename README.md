@@ -11,6 +11,7 @@ Prerequisites:
 - Your Samsung Galaxy S4 device should be in developer mode.*
 - A full backup has been made of the device.
 - A relatively recent 64-bit computer running Linux, we will be running Debian-based commands.
+- CCache installed on your machine (to speed up subsequent builds if something goes wrong)
 - A reasonable amount of RAM (16 GB to build up to lineage-17.1, 32 GB or more for lineage-18.1 and up). The less RAM you have, the longer the build will take. Enabling ZRAM can be helpful.
 - A reasonable amount of Storage (200 GB to build up to lineage-17.1, 300 GB for lineage-18.1 and up). You might require more free space for enabling ccache or building for multiple devices. Using SSDs results in considerably faster build times than traditional hard drives.
 - A decent internet connection and reliable electricity. :)
@@ -75,6 +76,9 @@ Now we will set up some variables for the compiler to use:
 export ARCH=arm
 export SUBARCH=arm
 export CROSS_COMPILE=$(pwd)/toolchain/bin/arm-linux-androideabi-
+export USE_CCACHE=1
+export CCACHE_EXEC=/usr/bin/ccache
+ccache -M 30G
 ```
 Awesome! Architecture is set to ARM, and we have pointed to where the cross-compiler is located.
 
