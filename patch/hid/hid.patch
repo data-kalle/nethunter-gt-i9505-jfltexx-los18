@@ -278,15 +278,6 @@ index b2113420b80..2d1a833c484 100644
  	kfree(hidg->req->buf);
  	usb_ep_free_request(hidg->in_ep, hidg->req);
  
-@@ -580,7 +675,7 @@ static struct usb_gadget_strings *ct_func_strings[] = {
- /*-------------------------------------------------------------------------*/
- /*                             usb_configuration                           */
- 
--int __init hidg_bind_config(struct usb_configuration *c,
-+int hidg_bind_config(struct usb_configuration *c,
- 			    struct hidg_func_descriptor *fdesc, int index)
- {
- 	struct f_hidg *hidg;
 @@ -631,7 +726,7 @@ int __init hidg_bind_config(struct usb_configuration *c,
  	return status;
  }
